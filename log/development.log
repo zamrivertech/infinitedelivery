@@ -1,0 +1,10 @@
+Started GET "/" for ::1 at 2025-06-23 13:57:27 +0200
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='Infinitedelivery'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Infinitedelivery'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Infinitedelivery'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/masul2099/.rbenv/versions/3.3.0/lib/ruby/gems/3.3.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/masul2099/.rbenv/versions/3.3.0/lib/ruby/gems/3.3.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.2ms | GC: 0.0ms)
+Completed 200 OK in 92ms (Views: 14.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 12.3ms)
+
+
