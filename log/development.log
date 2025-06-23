@@ -659,3 +659,19 @@ Importmap skipped missing path: bootsrap.bundle.min.js
 Completed 200 OK in 23ms (Views: 12.3ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.4ms)
 
 
+Started GET "/contacts" for ::1 at 2025-06-23 20:03:55 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (1.3ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 7.3ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.6ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 16.3ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
