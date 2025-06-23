@@ -8,3 +8,654 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 92ms (Views: 14.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 12.3ms)
 
 
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Infinitedelivery'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (5.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-06-23 12:13:13.255133', '2025-06-23 12:13:13.255139') RETURNING "key" /*application='Infinitedelivery'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Infinitedelivery'*/[0m
+Migrating to CreateContacts (20250623120938)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Infinitedelivery'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "contacts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Infinitedelivery'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250623120938') RETURNING "version" /*application='Infinitedelivery'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Infinitedelivery'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Infinitedelivery'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Infinitedelivery'*/[0m
+  [1m[36mContact Create (1.1ms)[0m  [1m[32mINSERT INTO "contacts" ("name", "created_at", "updated_at") VALUES ('Joao', '2025-06-23 12:16:45.069409', '2025-06-23 12:16:45.069409') RETURNING "id" /*application='Infinitedelivery'*/[0m
+  [1m[36mTRANSACTION (6.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Infinitedelivery'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Infinitedelivery'*/[0m
+  [1m[36mContact Create (0.7ms)[0m  [1m[32mINSERT INTO "contacts" ("name", "created_at", "updated_at") VALUES ('Joao Adelino', '2025-06-23 12:17:20.246754', '2025-06-23 12:17:20.246754') RETURNING "id" /*application='Infinitedelivery'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Infinitedelivery'*/[0m
+  [1m[36mContact Load (0.1ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /* loading for pp */ LIMIT 11 /*application='Infinitedelivery'*/[0m
+  [1m[36mContact Load (0.2ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" WHERE "contacts"."id" = 1 LIMIT 1 /*application='Infinitedelivery'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Infinitedelivery'*/[0m
+  [1m[36mContact Update (0.6ms)[0m  [1m[33mUPDATE "contacts" SET "name" = 'Ana Maria', "updated_at" = '2025-06-23 12:18:29.066704' WHERE "contacts"."id" = 1 /*application='Infinitedelivery'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Infinitedelivery'*/[0m
+  [1m[36mContact Load (0.2ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /* loading for pp */ LIMIT 11 /*application='Infinitedelivery'*/[0m
+Started GET "/" for ::1 at 2025-06-23 17:40:40 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Infinitedelivery'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/masul2099/.rbenv/versions/3.3.0/lib/ruby/gems/3.3.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/masul2099/.rbenv/versions/3.3.0/lib/ruby/gems/3.3.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.7ms | GC: 0.0ms)
+Completed 200 OK in 63ms (Views: 7.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 17:50:40 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/contacts"):
+  
+Started GET "/favicon.ico" for ::1 at 2025-06-23 17:50:41 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/contacts" for ::1 at 2025-06-23 17:51:28 +0200
+  
+ArgumentError (Missing :controller key on routes definition, please check your routes.):
+  
+config/routes.rb:2:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started GET "/contacts" for ::1 at 2025-06-23 17:51:38 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/contacts"):
+  
+Started GET "/contacts" for ::1 at 2025-06-23 17:52:59 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/contacts"):
+  
+Started GET "/" for ::1 at 2025-06-23 17:53:11 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/masul2099/.rbenv/versions/3.3.0/lib/ruby/gems/3.3.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/masul2099/.rbenv/versions/3.3.0/lib/ruby/gems/3.3.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 4.3ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 6.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 17:53:18 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/contacts"):
+  
+Started GET "/contacts" for ::1 at 2025-06-23 17:56:02 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 29.8ms | GC: 7.3ms)
+Completed 200 OK in 89ms (Views: 32.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.3ms)
+
+
+Started GET "/assets/application-8b441ae0.css" for ::1 at 2025-06-23 17:56:02 +0200
+Started GET "/assets/application-bfcdf840.js" for ::1 at 2025-06-23 17:56:02 +0200
+Started GET "/assets/turbo.min-3a2e143f.js" for ::1 at 2025-06-23 17:56:02 +0200
+Started GET "/assets/controllers/hello_controller-708796bd.js" for ::1 at 2025-06-23 17:56:02 +0200
+Started GET "/assets/controllers/index-ee64e1f1.js" for ::1 at 2025-06-23 17:56:02 +0200
+Started GET "/assets/stimulus.min-4b1e420e.js" for ::1 at 2025-06-23 17:56:02 +0200
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for ::1 at 2025-06-23 17:56:02 +0200
+Started GET "/assets/controllers/application-3affb389.js" for ::1 at 2025-06-23 17:56:02 +0200
+Started GET "/contacts" for ::1 at 2025-06-23 18:05:05 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 57.7ms | GC: 0.0ms)
+Completed 200 OK in 110ms (Views: 59.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 5.2ms)
+
+
+Started GET "/assets/bootstrap.min-32b6274f.css" for ::1 at 2025-06-23 18:05:05 +0200
+Started GET "/assets/dashboard-31fb3d16.css" for ::1 at 2025-06-23 18:05:05 +0200
+Removed sourceMappingURL comment for missing asset 'bootstrap.min.css.map' from bootstrap.min.css
+Started GET "/contacts" for ::1 at 2025-06-23 18:06:17 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | GC: 0.2ms)
+Completed 200 OK in 24ms (Views: 6.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.8ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 18:38:53 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 2.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 49.6ms | GC: 35.5ms)
+Completed 200 OK in 71ms (Views: 53.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 35.5ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 18:40:57 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 2.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 2.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.5ms | GC: 0.0ms)
+Completed 200 OK in 49ms (Views: 28.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 18:42:21 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.2ms | GC: 0.2ms)
+Completed 200 OK in 41ms (Views: 21.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 18:43:39 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 10.2ms | GC: 9.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.9ms | GC: 9.3ms)
+Completed 200 OK in 42ms (Views: 23.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 9.3ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:02:22 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 7.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:02:28 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.1ms | GC: 0.0ms)
+Completed 200 OK in 22ms (Views: 12.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:02:39 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | GC: 0.2ms)
+Completed 200 OK in 15ms (Views: 7.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:02:56 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | GC: 0.5ms)
+Completed 200 OK in 22ms (Views: 8.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 5.1ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:10:14 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 32.5ms | GC: 0.5ms)
+Completed 200 OK in 62ms (Views: 36.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.5ms)
+
+
+Started GET "/assets/application-1c565cc1.js" for ::1 at 2025-06-23 19:10:14 +0200
+Started GET "/assets/color-modes-f139b26b.js" for ::1 at 2025-06-23 19:10:14 +0200
+Started GET "/contacts" for ::1 at 2025-06-23 19:10:22 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 5.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:10:23 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 2.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:10:24 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 2.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:14:56 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.3ms | GC: 0.0ms)
+Completed 200 OK in 37ms (Views: 23.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/assets/application-c5e5ddc4.js" for ::1 at 2025-06-23 19:14:56 +0200
+Started GET "/assets/bootstrap.bundle.min-7e180834.js" for ::1 at 2025-06-23 19:14:56 +0200
+Removed sourceMappingURL comment for missing asset 'bootstrap.bundle.min.js.map' from bootstrap.bundle.min.js
+Started GET "/contacts" for ::1 at 2025-06-23 19:15:47 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | GC: 0.1ms)
+Completed 200 OK in 21ms (Views: 14.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:15:50 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.6ms)
+Completed 200 OK in 17ms (Views: 4.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:16:09 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.1ms | GC: 0.3ms)
+Completed 200 OK in 19ms (Views: 12.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:26:07 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 1.3ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.3ms | GC: 0.3ms)
+Completed 200 OK in 32ms (Views: 17.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:28:32 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  Rendered contacts/index.html.erb within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 57ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil)
+Caused by: NoMethodError (undefined method `each' for nil)
+
+Information for: ActionView::Template::Error (undefined method `each' for nil):
+    1: <% provide(:title, "Clientes") %>
+    2: 
+    3: <div id="contacts">
+    4:   <% @contact.each do |contact| %>
+    5:     <div>
+    6:       <%= contact.name %>
+    7:     </div>
+  
+app/views/contacts/index.html.erb:4
+
+Information for cause: NoMethodError (undefined method `each' for nil):
+  
+app/views/contacts/index.html.erb:4
+Started GET "/contacts" for ::1 at 2025-06-23 19:28:43 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (10.7ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:4
+  Rendered contacts/index.html.erb within layouts/application (Duration: 23.2ms | GC: 0.3ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.8ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 34.4ms | GC: 0.8ms)
+Completed 200 OK in 47ms (Views: 18.2ms | ActiveRecord: 17.4ms (1 query, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:36:10 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (2.5ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:4
+  Rendered contacts/index.html.erb within layouts/application (Duration: 8.7ms | GC: 1.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.9ms | GC: 1.3ms)
+Completed 200 OK in 45ms (Views: 18.3ms | ActiveRecord: 2.5ms (1 query, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:37:36 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (1.1ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 10.8ms | GC: 4.5ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.0ms | GC: 5.9ms)
+Completed 200 OK in 34ms (Views: 21.7ms | ActiveRecord: 1.7ms (1 query, 0 cached) | GC: 5.9ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:38:09 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (1.2ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 20.1ms | GC: 4.2ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.7ms | GC: 4.7ms)
+Completed 200 OK in 44ms (Views: 25.7ms | ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 4.7ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:39:34 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.8ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 8.4ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.4ms | GC: 0.6ms)
+Completed 200 OK in 37ms (Views: 15.5ms | ActiveRecord: 2.2ms (1 query, 0 cached) | GC: 15.7ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:42:42 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (1.1ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 7.2ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.3ms | GC: 6.6ms)
+Completed 200 OK in 47ms (Views: 25.6ms | ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 6.6ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:45:33 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.9ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 5.0ms | GC: 0.1ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | GC: 0.1ms)
+Completed 200 OK in 24ms (Views: 13.2ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:45:47 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.8ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 8.0ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.8ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 16.6ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:45:56 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (1.2ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 9.5ms | GC: 0.6ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | GC: 0.6ms)
+Completed 200 OK in 27ms (Views: 16.1ms | ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:46:32 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.6ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 5.8ms | GC: 0.3ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.3ms | GC: 0.5ms)
+Completed 200 OK in 26ms (Views: 15.3ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:47:22 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.6ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.3ms | GC: 5.7ms)
+Completed 200 OK in 27ms (Views: 16.6ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 5.7ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2025-06-23 19:47:31 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/assets/turbo.min-5f3b7fda.js.map" for ::1 at 2025-06-23 19:47:31 +0200
+Started GET "/assets/stimulus.min-2395e199.js.map" for ::1 at 2025-06-23 19:47:31 +0200
+Started GET "/contacts" for ::1 at 2025-06-23 19:48:53 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (1.3ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 9.0ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.2ms | GC: 0.0ms)
+Completed 200 OK in 36ms (Views: 23.6ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:49:05 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (2.0ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 10.0ms | GC: 1.7ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.6ms | GC: 1.7ms)
+Completed 200 OK in 25ms (Views: 14.3ms | ActiveRecord: 2.4ms (1 query, 0 cached) | GC: 1.7ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:52:49 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (1.1ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 11.4ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.0ms | GC: 0.2ms)
+Completed 200 OK in 35ms (Views: 19.3ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:52:51 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.1ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 4.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:53:05 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.6ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 5.8ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | GC: 0.7ms)
+Completed 200 OK in 32ms (Views: 22.6ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 8.5ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:53:20 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.7ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 6.1ms | GC: 0.1ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.9ms | GC: 0.6ms)
+Completed 200 OK in 26ms (Views: 16.1ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:54:39 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.9ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 6.0ms | GC: 0.0ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | GC: 0.0ms)
+Completed 200 OK in 23ms (Views: 12.1ms | ActiveRecord: 1.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2025-06-23 19:55:30 +0200
+Processing by ContactsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering contacts/index.html.erb within layouts/application
+  [1m[36mContact Load (0.6ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts" /*action='index',application='Infinitedelivery',controller='contacts'*/[0m
+  ↳ app/views/contacts/index.html.erb:12
+  Rendered contacts/index.html.erb within layouts/application (Duration: 5.3ms | GC: 0.2ms)
+Importmap skipped missing path: bootsrap.bundle.min.js
+Importmap skipped missing path: bootsrap.bundle.min.js
+  Rendered layouts/partials/_svg.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layouts/partials/_header.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layouts/partials/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.3ms | GC: 0.4ms)
+Completed 200 OK in 23ms (Views: 12.3ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.4ms)
+
+
