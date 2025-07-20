@@ -3,3 +3,13 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "color-modes"
 import "bootstrap"
+
+document.addEventListener("turbo:load", () => {
+  document.querySelectorAll(".toast").forEach((toastEl) => {
+    const toast = new bootstrap.Toast(toastEl, {
+      autohide: true,
+      delay: 3500
+    });
+    toast.show();
+  });
+});

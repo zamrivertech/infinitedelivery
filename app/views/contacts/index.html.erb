@@ -1,20 +1,51 @@
 <% provide(:title, "Contactos") %>
 
+          <div class="d-flex justify-content-end flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <button type="button" class="btn btn-sm btn-success me-2" data-bs-toggle="modal" data-bs-target="#contactModal">
+                  Adicionar
+                </button>               
+            </div>
+          </div>
+          
+<%= form_with model: @contact do |form| %>
+
+<%= render "layouts/partials/modal",
+    modal_id: "contactModal",
+    modal_title: "Novo Contacto",
+    modal_body: render("contacts/form_body", form: form),
+    modal_footer: form.submit("Salvar", class: "btn btn-success"),
+    modal_class: "custom-modal",
+    dialog_class: "modal-lg",
+    content_class: "shadow-lg" 
+%>
+
+<% end %>
+
+
 <div class="table-responsive small">
   <table class="table table-striped table-sm">
    <thead>
-    <tr>
-    <th scope="col">#</th>
-    <th scope="col">Nome</th>
-    </tr>
+      <tr>
+        <% @client_attributes.each do |attribute| %>
+          <th scope="col"><%= attribute.humanize %></th>
+        <% end %>
+     </tr>
   </thead>
     <tbody>
-      <% @contacts.each do |contact| %>
+      <% @clients.each do |client| %>
         <tr>
-            <td><%= contact.id %></td>
-            <td><%= contact.name %></td>
+          <td><%= client.full_name %></td>
+          <td><%= client.nationality %></td>
+          <td><%= client.id_type %> - <%= client.id_number %></td>
+          <td><%= client.gender %></td>
+          <td><%= client.date_of_birth.strftime('%d/%m/%Y') %></td>
+          <td><%= client.address %></td>
         </tr>
       <% end %>
+
    </tbody>
 </table>
+
+
 

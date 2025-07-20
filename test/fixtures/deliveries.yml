@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parcel: one
+  delivery_type: MyString
+  arrived_at: 2025-07-17 21:54:57
+  delivered_at: 2025-07-17 21:54:57
+  proof_of_delivery: MyString
+  delivery_status: MyString
+
+two:
+  parcel: two
+  delivery_type: MyString
+  arrived_at: 2025-07-17 21:54:57
+  delivered_at: 2025-07-17 21:54:57
+  proof_of_delivery: MyString
+  delivery_status: MyString

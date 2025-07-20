@@ -1,0 +1,109 @@
+
+<% provide(:title, "Entidades") %>
+
+<% content_for :navpills do %>
+    <%= link_to "Geral", entities_path, class: "h6 btn btn-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill me-2" %>
+    <%= link_to "Papeis", roles_path, class: "h6 btn btn-outline-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill" %>
+<% end %>
+
+
+
+ <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+  <%= form_with url: entities_path, method: :get, local: true do |form| %>
+  <div class="input-group">
+    <%= form.label :query, "Pesquisar", class: "visually-hidden" %>
+    <%= form.text_field :query, placeholder: "Pesquisar", class: "form-control" %>
+
+    <%= form.label :role_id, "Filtrar por Papel", class: "visually-hidden" %>
+    <%= form.select :role_id, options_from_collection_for_select(@roles, :id, :name, params[:role_id]),
+        { prompt: "Todos" }, class: "form-select" %>
+    <%= form.submit "Pesquisar", class: "btn btn-sm btn-secondary" %>     
+  </div>
+<% end %>
+
+
+
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <%= link_to "Adicionar", new_entity_path , class: "btn btn-sm btn-success me-2" %>        
+  </div>
+</div>         
+
+<%= render "layouts/partials/flash_toasts" %>
+
+<div class="table-responsive small">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <% @entity_attributes.each do |attr| %>
+          <th><%= attr %></th>
+        <% end %>
+        <th class="text-center"></th> <!-- 🔧 Action buttons column -->
+      </tr>
+    </thead>
+    <tbody>
+        <% if @entities.any? %>
+    <% @entities.each do |entity| %>
+      <tr>
+        <td><%= entity.full_name %></td>
+          <td><%= entity.nationality %></td>
+          <td><%= entity.id_type %> - <%= entity.id_number %> </td>
+          <td><%= entity.gender %></td>
+          <td><%= entity.date_of_birth %></td>
+          <td><%= entity.place_of_birth %></td>
+          <td><%= entity.address %></td>  
+          <td><%= entity.issuance_country %> - <%= entity.issuance_location %> </td>   
+          <td><%= entity.issuance_date %> - <%= entity.expiry_date %></td> 
+          <td><%= entity.residence_status %></td>   
+          <td>
+            <% entity.contacts.where.not(contact_type: nil).where.not(value: nil).each do |contact| %>
+              <%= contact.contact_type.titleize %>: <%= contact.value %>
+              <br>
+            <% end %>
+          </td>
+          <td><%= entity.role&.name&.titleize || "—" %></td>
+          <!-- 🔘 Action buttons per entity -->
+          <td class="text-center">
+            <div class="d-flex" role="group">
+              <%= link_to "Atualizar", edit_entity_path(entity), class: "btn btn-sm btn-outline-primary me-2 mt-1" %>
+              <button type="button" class="btn btn-sm btn-outline-danger me-2 mt-1" data-bs-toggle="modal" data-bs-target="#deleteModal-<%= entity.id %>">
+              Apagar
+            </button>
+            </div>
+          </td>
+      </tr>
+      <%= render partial: "layouts/partials/confirmation_modal", locals: {
+        modal_id: "deleteModal-#{entity.id}",
+        modal_label_id: "deleteLabel-#{entity.id}",
+        title: "Confirmar Remoção",
+        message: "Tens a certeza que desejas apagar <strong>#{entity.full_name}</strong>?".html_safe,
+        path: entity_path(entity),
+        modal_class: "",
+        dialog_class: "",
+        content_class: "",
+        header_class: "",
+        body_class: "",
+        footer_class: "",
+        cancel_button: nil,
+        confirm_button: nil
+      } %>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="<%= @entity_attributes.size + 1 %>" class="text-center text-muted py-4">
+        <% if params[:query].present? %>
+          Nenhuma entidade corresponde à pesquisa: "<strong><%= params[:query] %></strong>"
+        <% else %>
+          Nenhuma entidade cadastrada ainda.
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+

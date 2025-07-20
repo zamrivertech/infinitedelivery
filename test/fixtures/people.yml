@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  full_name: MyString
+  nationality: MyString
+  id_type: MyString
+  id_number: MyString
+  gender: MyString
+  date_of_birth: 2025-07-17
+  place_of_birth: MyString
+  marital_status: MyString
+  height_cm: 1
+  address: MyString
+  issuance_country: MyString
+  issuance_location: MyString
+  issuance_date: 2025-07-17
+  expiry_date: 2025-07-17
+  residence_status: MyString
+
+two:
+  full_name: MyString
+  nationality: MyString
+  id_type: MyString
+  id_number: MyString
+  gender: MyString
+  date_of_birth: 2025-07-17
+  place_of_birth: MyString
+  marital_status: MyString
+  height_cm: 1
+  address: MyString
+  issuance_country: MyString
+  issuance_location: MyString
+  issuance_date: 2025-07-17
+  expiry_date: 2025-07-17
+  residence_status: MyString

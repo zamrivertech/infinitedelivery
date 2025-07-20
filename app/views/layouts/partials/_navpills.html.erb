@@ -1,0 +1,9 @@
+<% if defined?(tabs) && tabs.respond_to?(:each) && tabs.any? %>
+  <ul class="nav nav-pills mb-2 justify-content-end">
+    <% tabs.each do |tab| %>
+      <li class="nav-item">
+        <%= link_to tab[:label], tab[:path], class: "nav-link #{tab[:active] ? 'active' : ''}" %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

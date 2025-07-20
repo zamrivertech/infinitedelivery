@@ -1,0 +1,47 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parcel_code: MyString
+  parcel_type: MyString
+  contents_description: MyText
+  weight_kg: 1.5
+  dimensions_cm: MyString
+  fragile: false
+  insurance_required: false
+  value_mzn: 1
+  special_instructions: MyText
+  delivery_type: MyString
+  delivery_priority: MyString
+  expected_delivery_date: 2025-07-17
+  tracking_status: MyString
+  received_by_recipient: false
+  receipt_pdf_link: MyString
+  internal_notes: MyText
+  sender: one
+  recipient: one
+  registered_by: one
+  origin_branch: one
+  destination_branch: one
+
+two:
+  parcel_code: MyString
+  parcel_type: MyString
+  contents_description: MyText
+  weight_kg: 1.5
+  dimensions_cm: MyString
+  fragile: false
+  insurance_required: false
+  value_mzn: 1
+  special_instructions: MyText
+  delivery_type: MyString
+  delivery_priority: MyString
+  expected_delivery_date: 2025-07-17
+  tracking_status: MyString
+  received_by_recipient: false
+  receipt_pdf_link: MyString
+  internal_notes: MyText
+  sender: two
+  recipient: two
+  registered_by: two
+  origin_branch: two
+  destination_branch: two

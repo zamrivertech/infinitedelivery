@@ -1,0 +1,16 @@
+<% flash.each do |type, message| %>
+  <% variant = case type
+    when "notice" then "success"
+    when "alert" then "danger"
+    when "info" then "info"
+    when "warning" then "warning"
+    else "primary"
+  end %>
+
+  <%= render partial: "layouts/partials/toast", locals: {
+    body: message,
+    header: "INDEL",
+    timestamp: "Agora mesmo",
+    variant: variant
+  } %>
+<% end %>

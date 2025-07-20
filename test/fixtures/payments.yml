@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parcel: one
+  transport_cost_mzn: 1
+  insurance_cost_mzn: 1
+  total_cost_mzn: 1
+  status: MyString
+  method: MyString
+  payer_type: MyString
+
+two:
+  parcel: two
+  transport_cost_mzn: 1
+  insurance_cost_mzn: 1
+  total_cost_mzn: 1
+  status: MyString
+  method: MyString
+  payer_type: MyString
