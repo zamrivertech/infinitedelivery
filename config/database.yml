@@ -10,13 +10,5 @@ default: &default
 
 development:
   <<: *default
-  database: infinitedelivery_dev
-
-test:
-  <<: *default
-  database: infinitedelivery_test
-
-production:
-  <<: *default
-  database: infinitedelivery_prod
+  database: indel
 

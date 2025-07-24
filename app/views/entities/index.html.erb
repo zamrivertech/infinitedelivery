@@ -6,9 +6,7 @@
     <%= link_to "Papeis", roles_path, class: "h6 btn btn-outline-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill" %>
 <% end %>
 
-
-
- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+ <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-3 border-bottom">
 
   <%= form_with url: entities_path, method: :get, local: true do |form| %>
   <div class="input-group">
@@ -24,7 +22,7 @@
 
 
 
-  <div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-toolbar mb-md-0">
     <%= link_to "Adicionar", new_entity_path , class: "btn btn-sm btn-success me-2" %>        
   </div>
 </div>         
@@ -52,16 +50,19 @@
           <td><%= entity.date_of_birth %></td>
           <td><%= entity.place_of_birth %></td>
           <td><%= entity.address %></td>  
-          <td><%= entity.issuance_country %> - <%= entity.issuance_location %> </td>   
-          <td><%= entity.issuance_date %> - <%= entity.expiry_date %></td> 
-          <td><%= entity.residence_status %></td>   
+          <td class="text-center">
+              <%= entity.sent_count.to_i > 0 ? entity.sent_count : "Nenhuma" %> 
+          </td>
+          <td class="text-center">    
+              <%= entity.received_count.to_i > 0 ? entity.received_count : "Nenhuma" %>
+          </td>
           <td>
             <% entity.contacts.where.not(contact_type: nil).where.not(value: nil).each do |contact| %>
               <%= contact.contact_type.titleize %>: <%= contact.value %>
               <br>
             <% end %>
           </td>
-          <td><%= entity.role&.name&.titleize || "—" %></td>
+          <td><%= entity.role&.name&.titleize || "Nenhum" %></td>
           <!-- 🔘 Action buttons per entity -->
           <td class="text-center">
             <div class="d-flex" role="group">

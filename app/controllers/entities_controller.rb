@@ -5,8 +5,7 @@ def index
   @roles = Role.order(:name) # for select input
   @entity_attributes = [
     "Nome", "Nacionalidade", "Identificação", "Gênero",
-    "Nascimento", "Naturalidade", "Endereço", "Local de Emissão", 
-    "Data de Emissão", "Residência",
+    "Nascimento", "Naturalidade", "Endereço", "Envio", "Recepção",
     "Contacto", "Papel"
   ]
 
@@ -26,7 +25,20 @@ def index
     base = base.where(role_id: params[:role_id])
   end
 
-  @entities = base.distinct
+  @entities = base
+  .left_joins(:sent_parcels, :received_parcels)
+  .select(
+    "entities.*",
+    "COUNT(DISTINCT parcels_sent.id) AS sent_count",
+    "COUNT(DISTINCT parcels_received.id) AS received_count"
+  )
+  .joins("LEFT JOIN parcels AS parcels_sent ON parcels_sent.sender_id = entities.id")
+  .joins("LEFT JOIN parcels AS parcels_received ON parcels_received.recipient_id = entities.id")
+  .group("entities.id")
+  .distinct
+
+
+
 end
 
 
