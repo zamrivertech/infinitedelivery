@@ -3,7 +3,7 @@
 
 <% content_for :navpills do %>
     <%= link_to "Geral", entities_path, class: "h6 btn btn-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill me-2" %>
-    <%= link_to "Papeis", roles_path, class: "h6 btn btn-outline-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill" %>
+    <%= link_to "Papeis", roles_path, class: "h6 btn btn-outline-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill" %> 
 <% end %>
 
  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-3 border-bottom">
@@ -20,8 +20,6 @@
   </div>
 <% end %>
 
-
-
   <div class="btn-toolbar mb-md-0">
     <%= link_to "Adicionar", new_entity_path , class: "btn btn-sm btn-success me-2" %>        
   </div>
@@ -36,7 +34,6 @@
         <% @entity_attributes.each do |attr| %>
           <th><%= attr %></th>
         <% end %>
-        <th class="text-center"></th> <!-- 🔧 Action buttons column -->
       </tr>
     </thead>
     <tbody>
@@ -49,7 +46,6 @@
           <td><%= entity.gender %></td>
           <td><%= entity.date_of_birth %></td>
           <td><%= entity.place_of_birth %></td>
-          <td><%= entity.address %></td>  
           <td class="text-center">
               <%= entity.sent_count.to_i > 0 ? entity.sent_count : "Nenhuma" %> 
           </td>
@@ -66,28 +62,10 @@
           <!-- 🔘 Action buttons per entity -->
           <td class="text-center">
             <div class="d-flex" role="group">
-              <%= link_to "Atualizar", edit_entity_path(entity), class: "btn btn-sm btn-outline-primary me-2 mt-1" %>
-              <button type="button" class="btn btn-sm btn-outline-danger me-2 mt-1" data-bs-toggle="modal" data-bs-target="#deleteModal-<%= entity.id %>">
-              Apagar
-            </button>
+              <a href="/entities/<%= entity.id %>" class="btn btn-sm btn-outline-info ps-2 pe-2 pt-1 pb-1 me-1">Visualizar</a>
             </div>
           </td>
       </tr>
-      <%= render partial: "layouts/partials/confirmation_modal", locals: {
-        modal_id: "deleteModal-#{entity.id}",
-        modal_label_id: "deleteLabel-#{entity.id}",
-        title: "Confirmar Remoção",
-        message: "Tens a certeza que desejas apagar <strong>#{entity.full_name}</strong>?".html_safe,
-        path: entity_path(entity),
-        modal_class: "",
-        dialog_class: "",
-        content_class: "",
-        header_class: "",
-        body_class: "",
-        footer_class: "",
-        cancel_button: nil,
-        confirm_button: nil
-      } %>
     <% end %>
   <% else %>
     <tr>

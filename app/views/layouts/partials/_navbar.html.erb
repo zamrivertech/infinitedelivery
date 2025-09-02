@@ -15,11 +15,11 @@
               <ul class="nav flex-column">
                 <li class="nav-item">
                   <%= link_to "Encomendas", parcels_path,
-                    class: "nav-link d-flex align-items-center gap-2 text-white #{'active'if current_page?(parcels_path)}" %>
+                    class: "nav-link d-flex align-items-center gap-2 text-white #{request.path.include?("parcels") ? 'active' : ''}" %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "Entidades", entities_path,
-                    class: "nav-link d-flex align-items-center gap-2 text-white #{'active' if current_page?(entities_path)}" %>
+                    class: "nav-link d-flex align-items-center gap-2 text-white #{request.path.include?("entities") ? 'active' : ''}" %>
                 </li>
               </ul>
               <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">

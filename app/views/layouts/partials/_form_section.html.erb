@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header fw-bold"><%= title %></div>
+  <div class="card-body">
+      <%= render_fields(form, fields) %>
+      <% if local_assigns[:removable] %>
+        <div class="text-end">
+          <button type="button" class="btn btn-sm btn-outline-danger <%= remove_class %>">
+            <%= remove_label %>
+          </button>
+        </div>
+      <% end %>
+  </div>
+</div>

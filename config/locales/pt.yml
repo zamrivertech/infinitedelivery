@@ -1,0 +1,122 @@
+pt:
+  activerecord:
+    attributes:
+      entity:
+        full_name: "Nome Completo"
+        gender: "Gênero"
+        date_of_birth: "Data de Nascimento"
+        nationality: "Nacionalidade"
+        place_of_birth: "Naturalidade"
+        marital_status: "Estado Civil"
+        height_cm: "Altura (cm)"
+        id_type: "Tipo de Identificação"
+        id_number: "Número de Identificação"
+        issuance_country: "País de Emissão"
+        issuance_location: "Local de Emissão"
+        issuance_date: "Data de Emissão"
+        expiry_date: "Data de Validade"
+        residence_status: "Situação de Residência"
+        role_id: "Tipo de Entidade"
+      contact:
+        contact_type: "Tipo de Contacto"
+        value: "Contacto"
+      address:
+        address_type: "Tipo de Endereço"
+        street_line_1: "Rua / Avenida"
+        street_line_2: "Complemento"
+        neighborhood: "Bairro"
+        city: "Cidade"
+        region: "Província / Região"
+        postal_code: "Código Postal"
+        country: "País"
+
+  errors:
+    models:
+      entity:
+        attributes:
+          full_name:
+            blank: "é obrigatório."
+          gender:
+            blank: "deve ser informado."
+          date_of_birth:
+            blank: "é necessária."
+          nationality:
+            blank: "deve ser informada."
+          place_of_birth:
+            blank: "deve ser informada."
+          marital_status:
+            blank: "deve ser selecionado."
+          height_cm:
+            blank: "é obrigatório."
+            not_a_number: "deve ser um número."
+          id_type:
+            blank: "deve ser selecionado."
+          id_number:
+            blank: "deve ser informado."
+          issuance_country:
+            blank: "deve ser informado."
+          issuance_location:
+            blank: "deve ser informado."
+          issuance_date:
+            blank: "deve ser informada."
+          expiry_date:
+            blank: "deve ser informada."
+          residence_status:
+            blank: "deve ser informada."
+          role_id:
+            blank: "deve ser selecionado."
+            not_a_number: "é inválido."
+      contact:
+        attributes:
+          contact_type:
+            blank: "deve ser selecionado."
+          value:
+            blank: "é obrigatório."
+            invalid: "não é válido."
+      address:
+        attributes:
+          address_type:
+            blank: "deve ser selecionado."
+          street_line_1:
+            blank: "é obrigatório."
+          street_line_2:
+            blank: "não pode estar vazio."
+          neighborhood:
+            blank: "deve ser informado."
+          city:
+            blank: "deve ser informada."
+          region:
+            blank: "deve ser informada."
+          postal_code:
+            blank: "deve ser informado."
+            invalid: "não é válido."
+          country:
+            blank: "deve ser informado."
+
+    messages:
+      blank: "não pode ficar em branco"
+      invalid: "não é válido"
+      not_a_number: "não é um número"
+      taken: "já está em uso"
+
+  date:
+    formats:
+      long: "%d de %B de %Y"
+    month_names:
+      - ~
+      - Janeiro
+      - Fevereiro
+      - Março
+      - Abril
+      - Maio
+      - Junho
+      - Julho
+      - Agosto
+      - Setembro
+      - Outubro
+      - Novembro
+      - Dezembro
+
+  time:
+    formats:
+      long: "%d de %B de %Y às %Hh%M"

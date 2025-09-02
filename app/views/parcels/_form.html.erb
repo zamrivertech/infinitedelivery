@@ -1,0 +1,114 @@
+<%= form_with model: @parcel,
+              url: @parcel.persisted? ? parcel_path(@parcel) : parcels_path,
+              method: @parcel.persisted? ? :patch : :post,
+              local: true, class: "row g-3 needs-validation p-2" do |form| %>
+
+  <div class="d-flex justify-content-between border-bottom pt-3 pb-3 ps-0 pe-0 mt-1">
+    <%= link_to "Voltar", parcels_path, class: "btn btn-sm btn-secondary me-2" %>
+    <%= form.submit(@parcel.persisted? ? "Atualizar" : "Salvar", class: "btn btn-sm #{ @parcel.persisted? ? 'btn-primary' : 'btn-success' } me-0") %>
+  </div>              
+
+  <div class="col-md-6">
+    <%= form.label :parcel_code, "Código da Encomenda", class: "form-label" %>
+    <%= form.text_field :parcel_code, class: "form-control #{'is-invalid' if @parcel.errors[:parcel_code].any?}" %>
+    <% if @parcel.errors[:parcel_code].any? %>
+      <div class="invalid-feedback d-block">Informe o código da encomenda.</div>
+    <% end %>
+
+    <%= form.label :dimensions_cm, "Dimensões (cm)", class: "form-label mt-3" %>
+    <%= form.text_field :dimensions_cm, class: "form-control" %>
+
+    <%= form.label :weight_kg, "Peso (kg)", class: "form-label mt-3" %>
+    <%= form.number_field :weight_kg, step: 0.1, class: "form-control #{'is-invalid' if @parcel.errors[:weight_kg].any?}" %>
+    <% if @parcel.errors[:weight_kg].any? %>
+      <div class="invalid-feedback d-block">Informe o peso da encomenda.</div>
+    <% end %>
+
+    <%= form.label :value_mzn, "Valor Declarado (MZN)", class: "form-label mt-3" %>
+    <%= form.number_field :value_mzn, step: 1, class: "form-control #{'is-invalid' if @parcel.errors[:value_mzn].any?}" %>
+    <% if @parcel.errors[:value_mzn].any? %>
+      <div class="invalid-feedback d-block">Informe o valor declarado.</div>
+    <% end %>
+
+    <label class="form-label mt-3">Outros Atributos</label>
+    <div class="d-flex gap-3">
+      <div class="form-check">
+        <%= form.check_box :fragile, class: "form-check-input" %>
+        <%= form.label :fragile, "Frágil?", class: "form-check-label" %>
+      </div>
+      <div class="form-check">
+        <%= form.check_box :insurance_required, class: "form-check-input" %>
+        <%= form.label :insurance_required, "Requer Seguro?", class: "form-check-label" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+
+    <%= form.label :sender_id, "Remetente", class: "form-label mt-0" %>
+    <%= select_tag "parcel[sender_id]",
+      options_for_select([['Escolher remetente', '']] + Entity.all.map { |e| [e.full_name, e.id] }, @parcel.sender_id),
+      id: "parcel_sender_id",
+      class: "form-select entity-select #{'is-invalid' if @parcel.errors[:sender_id].present? || (@parcel.sender_id.present? && @parcel.sender_id == @parcel.recipient_id)}",
+      disabled: false %>
+    <% if @parcel.errors[:sender_id].present? %>
+      <div class="invalid-feedback d-block">Escolha o remetente</div>
+    <% end %>
+    <% if @parcel.sender_id.present? && @parcel.sender_id == @parcel.recipient_id %>
+      <div class="invalid-feedback d-block">Remetente e destinatário não podem ser iguais.</div>
+    <% end %>
+
+    <%= form.label :recipient_id, "Destinatário", class: "form-label mt-3" %>
+    <%= select_tag "parcel[recipient_id]",
+      options_for_select([
+        ['Escolher destinatário', '']
+      ] + Entity.all.map { |e| [e.full_name, e.id, { disabled: @parcel.sender_id == e.id }] }, @parcel.recipient_id),
+      id: "parcel_recipient_id",
+      class: "form-select entity-select #{'is-invalid' if @parcel.errors[:recipient_id].present? || (@parcel.sender_id.present? && @parcel.sender_id == @parcel.recipient_id)}",
+      disabled: false %>
+    <% if @parcel.errors[:recipient_id].present? %>
+      <div class="invalid-feedback d-block">Escolha o destinatário</div>
+    <% end %>
+    <% if @parcel.sender_id.present? && @parcel.sender_id == @parcel.recipient_id %>
+      <div class="invalid-feedback d-block">Remetente e destinatário não podem ser iguais.</div>
+    <% end %>
+    
+
+    <%= form.label :origin_branch_id, "Origem", class: "form-label mt-3" %>
+    <%= form.collection_select :origin_branch_id, Branch.all, :id, :name,
+        {prompt: "Origem"},
+        class: "form-select #{'is-invalid' if @parcel.errors[:origin_branch_id].any?}" %>
+    <% if @parcel.errors[:origin_branch_id].any? %>
+      <div class="invalid-feedback d-block">Selecione a origem.</div>
+    <% end %>
+
+    <%= form.label :destination_branch_id, "Destino", class: "form-label mt-3" %>
+    <%= form.collection_select :destination_branch_id, Branch.all, :id, :name,
+        {prompt: "Destino"},
+        class: "form-select #{'is-invalid' if @parcel.errors[:destination_branch_id].any?}" %>
+    <% if @parcel.errors[:destination_branch_id].any? %>
+      <div class="invalid-feedback d-block">Selecione o destino.</div>
+    <% end %>
+  </div>
+
+  <div class="col-md-12 mb-3">
+    <%= form.label :contents_description, "Descrição do Conteúdo", class: "form-label" %>
+    <%= form.text_area :contents_description, rows: 3, class: "form-control #{'is-invalid' if @parcel.errors[:contents_description].any?}" %>
+    <% if @parcel.errors[:contents_description].any? %>
+      <div class="invalid-feedback d-block">Descreva o conteúdo da encomenda.</div>
+    <% end %>
+  </div>
+
+  <div class="col-md-6 mt-0 mb-3">
+    <%= form.label :special_instructions, "Instruções Especiais", class: "form-label" %>
+    <%= form.text_area :special_instructions, rows: 2, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6 mt-0 mb-3">
+    <%= form.label :internal_notes, "Notas Internas", class: "form-label" %>
+    <%= form.text_area :internal_notes, rows: 2, class: "form-control" %>
+  </div>
+  </div>
+
+<% end %>
+

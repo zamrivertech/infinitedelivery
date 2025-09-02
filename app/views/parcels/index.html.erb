@@ -16,12 +16,12 @@
     -->
     <%= form.label :status, "Filtrar por Estado", class: "visually-hidden" %>
     <%= form.select :status, ["Registrado", "Em trânsito", "Entregue"], { prompt: "Todos os estados" }, class: "form-select" %>
-    <%= form.submit "Filtrar", class: "btn btn-sm btn-secondary" %>
+    <%= form.submit "Pesquisar", class: "btn btn-sm btn-secondary" %>
   </div>
 <% end %>
 
   <div class="btn-toolbar mb-md-0">
-    <%= link_to "Adicionar", '#' , class: "btn btn-sm btn-success me-2" %>        
+    <%= link_to "Adicionar", new_parcel_path , class: "btn btn-sm btn-success me-2" %>        
   </div>
 
 </div>
@@ -34,7 +34,6 @@
       <th>Conteúdo</th>
       <th>Origem</th>
       <th>Destino</th>
-      <th>Estado</th>
       <th>Remetente</th>
       <th>Destinatário</th>
       <th></th>
@@ -47,14 +46,15 @@
         <td><%= truncate(parcel.contents_description, length: 40) %></td>
         <td><%= parcel.origin_branch&.name || "—" %></td>
         <td><%= parcel.destination_branch&.name || "—" %></td>
-        <td><span class="badge text-bg-info"><%= parcel.tracking_status %></span></td>
         <td><%= parcel.sender&.full_name || "—" %></td>
         <td><%= parcel.recipient&.full_name || "—" %></td>
         <td class="text-end">
-          <%= link_to "Ver", '#', class: "btn btn-sm btn-outline-primary" %>
+          <a href="/parcels/<%= parcel.id %>" class="btn btn-sm btn-outline-info ps-2 pe-2 pt-1 pb-1 me-1">Visualizar</a>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
+
+<%= render "layouts/partials/flash_toasts" %>

@@ -1,0 +1,4 @@
+<div class="d-flex justify-content-between border-bottom pt-3 pb-3 ps-0 pe-0 mt-1">
+  <%= link_to "Voltar", back_path, class: "btn btn-sm btn-secondary me-2" %>
+  <%= form.submit(form.object.persisted? ? "Atualizar" : "Salvar", class: "btn btn-sm #{form.object.persisted? ? 'btn-primary' : 'btn-success'} me-0") %>
+</div>

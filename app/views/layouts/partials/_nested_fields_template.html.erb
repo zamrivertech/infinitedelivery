@@ -1,0 +1,15 @@
+<div class="" data-template="true" style="display: none;">
+  <%= form.fields_for association, model_class.new, child_index: "NEW_RECORD" do |nested_form| %>
+    <div class='mt-3' data-nested="<%= association.to_s.singularize %>">
+      <%= nested_form.hidden_field :_destroy, value: "0" %>
+
+      <%= render 'layouts/partials/form_section',
+                  title: title + ' Alternativo',
+                  fields: fields,
+                  form: nested_form,
+                  removable: true,
+                  remove_class: "remove-#{association.to_s.singularize}",
+                  remove_label: "Remover #{association.to_s.singularize.humanize.downcase}" %>
+    </div>
+  <% end %>
+</div>

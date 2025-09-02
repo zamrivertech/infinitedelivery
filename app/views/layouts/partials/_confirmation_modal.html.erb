@@ -1,22 +1,22 @@
-<div class="modal fade <%= modal_class %>" id="<%= modal_id %>" tabindex="-1" aria-labelledby="<%= modal_label_id %>" aria-hidden="true">
-  <div class="modal-dialog <%= dialog_class %>">
-    <div class="modal-content <%= content_class %>">
-      <div class="modal-header <%= header_class %>">
+<div class="modal fade <%= modal_class || '' %>" id="<%= modal_id %>" tabindex="-1" aria-labelledby="<%= modal_label_id %>" aria-hidden="true">
+  <div class="modal-dialog <%= dialog_class || '' %>">
+    <div class="modal-content <%= content_class || '' %>">
+      <div class="modal-header <%= header_class || '' %>">
         <h5 class="modal-title" id="<%= modal_label_id %>"><%= title %></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
-      <div class="modal-body <%= body_class %>">
+      <div class="modal-body <%= body_class || '' %>">
         <%= message %>
       </div>
-      <div class="modal-footer <%= footer_class %>">
+      <div class="modal-footer <%= footer_class || '' %>">
         <%= cancel_button || button_tag("Cancelar", type: "button", class: "btn btn-secondary", data: { bs_dismiss: "modal" }) %>
         <% if confirm_button %>
-        <%= confirm_button %>
-      <% else %>
-        <%= button_to path, method: :delete, class: "btn btn-danger", data: { turbo: false } do %>
-          Apagar
+          <%= confirm_button %>
+        <% else %>
+          <%= button_to path, method: :delete, class: "btn btn-danger", data: { turbo: false } do %>
+            Apagar
+          <% end %>
         <% end %>
-      <% end %>
       </div>
     </div>
   </div>

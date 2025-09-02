@@ -1,121 +1,35 @@
-<%= form_with model: @entity, url: @entity.persisted? ? entity_path(@entity) : entities_path,
-              method: @entity.persisted? ? :patch : :post,
-              local: true, class: "row g-3 needs-validation m-2" do |form| %>
+<%= form_with model: entity, url: entity.persisted? ? entity_path(entity) : entities_path, method: entity.persisted? ? :patch : :post, local: true, class: "row g-3 needs-validation p-2" do |form| %>
+  <%= render 'layouts/partials/form_actions', form: form, back_path: entities_path %>
 
-  <div class="col-sm">
-    <%= form.label :full_name, "Nome Completo", class: "form-label" %>
-    <%= form.text_field :full_name, class: "form-control #{'is-invalid' if @entity.errors[:full_name].any?}" %>
-    <% if @entity.errors[:full_name].any? %>
-      <div class="invalid-feedback d-block">O nome completo é obrigatório.</div>
-    <% end %>
-
-    <%= form.label :nationality, "Nacionalidade", class: "form-label" %>
-    <%= form.text_field :nationality, class: "form-control #{'is-invalid' if @entity.errors[:nationality].any?}" %>
-    <% if @entity.errors[:nationality].any? %>
-      <div class="invalid-feedback">Informe a nacionalidade do cliente.</div>
-    <% end %>
-
-    <%= form.label :id_type, "Tipo de Identificação", class: "form-label" %>
-    <%= form.select :id_type, ["Passaporte", "Bilhete de Identidade", "NUIT"], {prompt: "Escolher..."}, class: "form-select #{'is-invalid' if @entity.errors[:id_type].any?}" %>
-    <% if @entity.errors[:id_type].any? %>
-      <div class="invalid-feedback">Selecione o tipo de identificação.</div>
-    <% end %>
-
-    <%= form.label :id_number, "Número de Identificação", class: "form-label" %>
-    <%= form.text_field :id_number, class: "form-control #{'is-invalid' if @entity.errors[:id_number].any?}" %>
-    <% if @entity.errors[:id_number].any? %>
-      <div class="invalid-feedback">Este campo é obrigatório.</div>
-    <% end %>
-
-    <%= form.label :gender, "Gênero", class: "form-label" %>
-    <%= form.select :gender, ["Masculino", "Feminino", "Outro"], {prompt: "Escolher..."}, class: "form-select #{'is-invalid' if @entity.errors[:gender].any?}" %>
-    <% if @entity.errors[:gender].any? %>
-      <div class="invalid-feedback">Selecione o gênero do cliente.</div>
-    <% end %>
-
-    <%= form.label :place_of_birth, "Naturalidade", class: "form-label" %>
-    <%= form.text_field :place_of_birth, class: "form-control #{'is-invalid' if @entity.errors[:place_of_birth].any?}" %>
-    <% if @entity.errors[:place_of_birth].any? %>
-      <div class="invalid-feedback">Informe a naturalidade.</div>
-    <% end %>
-  </div>
-
-  <div class="col-sm">
-    <%= form.label :marital_status, "Estado Civil", class: "form-label" %>
-    <%= form.select :marital_status, ["Solteiro", "Casado", "Divorciado"], {prompt: "Escolher..."}, class: "form-select #{'is-invalid' if @entity.errors[:marital_status].any?}" %>
-    <% if @entity.errors[:marital_status].any? %>
-      <div class="invalid-feedback">Informe o estado civil.</div>
-    <% end %>
-
-    <%= form.label :address, "Endereço", class: "form-label" %>
-    <%= form.text_field :address, class: "form-control #{'is-invalid' if @entity.errors[:address].any?}" %>
-    <% if @entity.errors[:address].any? %>
-      <div class="invalid-feedback">O endereço é obrigatório.</div>
-    <% end %>
-
-    <%= form.label :issuance_country, "País de Emissão", class: "form-label" %>
-    <%= form.text_field :issuance_country, class: "form-control #{'is-invalid' if @entity.errors[:issuance_country].any?}" %>
-    <% if @entity.errors[:issuance_country].any? %>
-      <div class="invalid-feedback">Informe o país de emissão.</div>
-    <% end %>
-
-    <%= form.label :issuance_location, "Local de Emissão", class: "form-label" %>
-    <%= form.text_field :issuance_location, class: "form-control #{'is-invalid' if @entity.errors[:issuance_location].any?}" %>
-    <% if @entity.errors[:issuance_location].any? %>
-      <div class="invalid-feedback">Informe o local de emissão.</div>
-    <% end %>
-
-    <%= form.label :issuance_date, "Data de Emissão", class: "form-label" %>
-    <%= form.date_field :issuance_date, class: "form-control #{'is-invalid' if @entity.errors[:issuance_date].any?}" %>
-    <% if @entity.errors[:issuance_date].any? %>
-      <div class="invalid-feedback">Informe a data de emissão.</div>
-    <% end %>
-
-    <%= form.label :expiry_date, "Data de Validade", class: "form-label" %>
-    <%= form.date_field :expiry_date, class: "form-control #{'is-invalid' if @entity.errors[:expiry_date].any?}" %>
-    <% if @entity.errors[:expiry_date].any? %>
-      <div class="invalid-feedback">Informe a data de validade do documento.</div>
-    <% end %>
-  </div>
-
-  <div class="col-12">
-    <%= form.label :residence_status, "Situação de Residência", class: "form-label" %>
-    <%= form.text_field :residence_status, class: "form-control #{'is-invalid' if @entity.errors[:residence_status].any?}" %>
-    <% if @entity.errors[:residence_status].any? %>
-      <div class="invalid-feedback">Informe a situação de residência.</div>
-    <% end %>
-  </div>  
- 
-    <div class="row g-2 m-0">
-      <%= form.fields_for :contacts, @entity.contacts.to_a do |contact_form| %>
-        <div class="col-sm">
-          <%= contact_form.label :contact_type, "Tipo", class: "form-label" %>
-          <%= contact_form.select :contact_type, ["Telefone", "Email"], {}, class: "form-select" %>
-        </div>
-
-        <div class="col-sm">
-          <%= contact_form.label :value, "Contacto", class: "form-label" %>
-          <%= contact_form.text_field :value, class: "form-control #{'is-invalid' if contact_form.object&.errors[:value].any?}" %>
-          <% if contact_form.object&.errors[:value].any? %>
-            <div class="invalid-feedback d-block">O contacto é obrigatório.</div>
-          <% end %>
-        </div>
-      <% end %>
+  <div class='row pt-0 g-3'>
+    <div class='col-md-6'>
+        <%= render 'layouts/partials/form_section', title: "Informações Pessoais", fields: entity_personal_fields, form: form %>
     </div>
-
-    <div class="col-12">
-      <%= form.label :role_id, "Tipo de Entidade", class: "form-label" %>
-      <%= form.collection_select :role_id, Role.all, :id, :name,
-            { prompt: "Escolher..." },
-            class: "form-select #{'is-invalid' if @entity.errors[:role_id].any?}" %>
-      <% if @entity.errors[:role_id].any? %>
-        <div class="invalid-feedback">Selecione um papel válido.</div>
-      <% end %>
+    <div class='col-md-6'>
+        <%= render 'layouts/partials/form_section', title: "Identificação", fields: entity_identification_fields, form: form %>
     </div>
+    <div class='col pt-0 g-3 mb-4'>
 
-  <div class="col-12 d-flex justify-content-end mb-3">
-    <%= link_to "Voltar", entities_path, class: "btn btn-sm btn-secondary me-2" %>
-    <%= form.submit(@entity.persisted? ? "Atualizar" : "Salvar", class: "btn btn-sm #{ @entity.persisted? ? 'btn-primary' : 'btn-success' } me-2") %>
+              <div id="contacts-container" class="mb-3">
+                <%= form.fields_for :contacts do |contact_form| %>
+                  <%= render 'layouts/partials/form_section', title: "Contato", fields: contact_fields, form: contact_form %>
+                <% end %>
+              </div>
+              <%= render 'layouts/partials/nested_fields_template',
+                        form: form,
+                        association: :contacts,
+                        model_class: Contact,
+                        fields: contact_fields,
+                        title: "Contato",
+                        css_class: "contact-fields" %>
+              <div class="text-end">
+                  <button type="button" class="btn btn-outline-primary btn-sm mb-4" id="add-contact">Adicionar outro contato</button>
+              </div>
+
+              <%= form.fields_for :addresses do |address_form| %>
+                <%= render 'layouts/partials/form_section', title: "Endereço", fields: address_fields, form: address_form %>
+              <% end %>
+    </div>    
   </div>
 
 <% end %>

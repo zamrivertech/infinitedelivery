@@ -1,0 +1,18 @@
+<% provide(:title, "Entidade") %>
+
+<%= render "layouts/partials/show_header", record: @entity, back_path: entities_path, edit_path: edit_entity_path(@entity), delete_path: entity_path(@entity) %>
+
+<div class="row g-3 pt-3">
+<% entity_sections(@entity).each do |title, rows| %>
+  <div class="col-md-<%= title == "Informações Pessoais" || title == "Identificação" ? "6" : "12" %>">
+    <%= render "layouts/partials/show_section", title:, rows: %>
+  </div>
+<% end %>
+
+
+  <div class="col-md-12 text-muted mt-2 mb-5">
+    <small>Criado em <%= l(@entity.created_at, format: :long) %> • Atualizado em <%= l(@entity.updated_at, format: :long) %></small>
+  </div>
+</div>
+
+<%= render "layouts/partials/flash_toasts" %>

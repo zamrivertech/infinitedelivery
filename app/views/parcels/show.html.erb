@@ -1,0 +1,59 @@
+<% provide(:title, "Encomenda") %>
+
+<div class="d-flex justify-content-between align-items-center pt-3 pb-3 border-bottom mb-2">
+  <%= link_to "Voltar", parcels_path, class: "btn btn-sm btn-secondary" %>
+
+  <div>
+    <%= link_to "Atualizar", edit_parcel_path(@parcel), class: "btn btn-sm btn-primary me-2" %>
+
+    <!-- Delete Button triggers Modal -->
+    <button type="button" class="btn btn-sm btn-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteModal-<%= @parcel.id %>">
+      Apagar
+    </button>
+
+    <!-- Confirmation Modal -->
+    <%= render partial: "layouts/partials/confirmation_modal", locals: {
+        modal_id: "deleteModal-#{@parcel.id}",
+        modal_label_id: "deleteLabel-#{@parcel.id}",
+        title: "Confirmar Remoção",
+        message: "Tens a certeza que desejas apagar <strong>#{@parcel.parcel_code}</strong>?".html_safe,
+        path: parcel_path(@parcel),
+        modal_class: "",
+        dialog_class: "",
+        content_class: "",
+        header_class: "",
+        body_class: "",
+        footer_class: "",
+        cancel_button: nil,
+        confirm_button: nil
+      } %>
+  </div>
+</div>
+
+<!-- Parcel Details -->
+<div class="row g-3 pt-3">
+  <div class="col-md-6 mt-0">
+    <strong>Código:</strong> <%= @parcel.parcel_code %><br>
+    <strong>Frágil:</strong> <%= @parcel.fragile? ? "Sim" : "Não" %><br>
+    <strong>Seguro:</strong> <%= @parcel.insurance_required? ? "Requerido" : "Não requerido" %><br>  
+    <strong>Peso:</strong> <%= number_with_precision(@parcel.weight_kg, precision: 2) %> kg<br>
+    <strong>Dimensões:</strong> <%= @parcel.dimensions_cm.presence || "—" %><br>
+    <strong>Valor Declarado:</strong> <%= number_to_currency(@parcel.value_mzn, unit: "MZN", precision: 0) %><br>
+    <p class="m-0"><strong>Instruções Especiais:</strong> <%= @parcel.special_instructions.presence || "—" %></p>
+    <p class="m-0"><strong>Notas Internas:</strong> <%= @parcel.internal_notes.presence || "—" %></p>
+    <p class="m-0"><strong>Descrição do Conteúdo:</strong> <%= @parcel.contents_description %></p>
+  </div>
+
+  <div class="col-md-6 mt-0">
+    <strong>Remetente:</strong> <%= @parcel.sender&.full_name || "—" %><br>
+    <strong>Destinatário:</strong> <%= @parcel.recipient&.full_name || "—" %><br>
+    <strong>Origem:</strong> <%= @parcel.origin_branch&.name || "—" %><br>
+    <strong>Destino:</strong> <%= @parcel.destination_branch&.name || "—" %>
+  </div>
+
+  <div class="col-md-12 text-muted mt-3">
+    <small>Criado em <%= l(@parcel.created_at, format: :long) %> • Atualizado em <%= l(@parcel.updated_at, format: :long) %></small>
+  </div>
+</div>
+
+<%= render "layouts/partials/flash_toasts" %>

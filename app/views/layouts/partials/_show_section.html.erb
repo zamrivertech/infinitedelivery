@@ -1,0 +1,9 @@
+<div class="card mb-4">
+  <div class="card-header fw-bold"><%= title %></div>
+  <div class="card-body">
+    <% rows.each do |label, value| %>
+      <strong><%= label %>:</strong>
+      <%= value.presence || "—" %><br>
+    <% end %>
+  </div>
+</div>

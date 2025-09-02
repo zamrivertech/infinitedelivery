@@ -10,9 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_18_145739) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_06_134652) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "address_type"
+    t.string "street_line_1"
+    t.string "street_line_2"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "region"
+    t.string "postal_code"
+    t.string "country"
+    t.string "residency_status"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "entity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entity_id"], name: "index_addresses_on_entity_id"
+  end
 
   create_table "branches", force: :cascade do |t|
     t.string "code"
@@ -43,6 +61,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_18_145739) do
     t.string "delivery_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "delivery_priority"
+    t.date "expected_delivery_date"
+    t.string "tracking_status"
+    t.boolean "received_by_recipient"
+    t.string "receipt_pdf_link"
     t.index ["parcel_id"], name: "index_deliveries_on_parcel_id"
   end
 
@@ -56,12 +79,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_18_145739) do
     t.string "place_of_birth"
     t.string "marital_status"
     t.integer "height_cm"
-    t.string "address"
     t.string "issuance_country"
     t.string "issuance_location"
     t.date "issuance_date"
     t.date "expiry_date"
-    t.string "residence_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "role_id"
@@ -87,16 +108,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_18_145739) do
     t.boolean "insurance_required"
     t.integer "value_mzn"
     t.text "special_instructions"
-    t.string "delivery_type"
-    t.string "delivery_priority"
-    t.date "expected_delivery_date"
-    t.string "tracking_status"
-    t.boolean "received_by_recipient"
-    t.string "receipt_pdf_link"
     t.text "internal_notes"
     t.bigint "sender_id"
     t.bigint "recipient_id"
-    t.bigint "registered_by_id"
     t.bigint "origin_branch_id"
     t.bigint "destination_branch_id"
     t.datetime "created_at", null: false
@@ -104,7 +118,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_18_145739) do
     t.index ["destination_branch_id"], name: "index_parcels_on_destination_branch_id"
     t.index ["origin_branch_id"], name: "index_parcels_on_origin_branch_id"
     t.index ["recipient_id"], name: "index_parcels_on_recipient_id"
-    t.index ["registered_by_id"], name: "index_parcels_on_registered_by_id"
     t.index ["sender_id"], name: "index_parcels_on_sender_id"
   end
 
@@ -129,6 +142,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_18_145739) do
     t.text "description"
   end
 
+  add_foreign_key "addresses", "entities"
   add_foreign_key "contacts", "entities"
   add_foreign_key "deliveries", "parcels"
   add_foreign_key "entities", "roles"
@@ -137,7 +151,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_18_145739) do
   add_foreign_key "parcels", "branches", column: "destination_branch_id"
   add_foreign_key "parcels", "branches", column: "origin_branch_id"
   add_foreign_key "parcels", "entities", column: "recipient_id"
-  add_foreign_key "parcels", "entities", column: "registered_by_id"
   add_foreign_key "parcels", "entities", column: "sender_id"
   add_foreign_key "payments", "parcels"
 end
