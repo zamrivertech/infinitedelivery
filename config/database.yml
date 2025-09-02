@@ -11,7 +11,7 @@ development:
   host: 127.0.0.1
   port: 5432
 
-production:
+production: &production
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
 
