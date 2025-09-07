@@ -17,3 +17,7 @@ production: &production
 
 cable:
   <<: *production
+
+queue:
+  <<: *production
+  migrations_paths: db/queue_migrate
