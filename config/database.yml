@@ -21,3 +21,8 @@ cable:
 queue:
   <<: *production
   migrations_paths: db/queue_migrate
+
+cache:
+  <<: *production
+  migrations_paths: db/cache_migrate
+
