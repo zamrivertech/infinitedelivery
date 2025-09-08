@@ -18,7 +18,16 @@ class Address < ApplicationRecord
 
   validates :address_type, :street_line_1, :city, :country, :region, presence: true
 
+  def address
+    [region, country].compact.join(', ')
+  end
+
   def full_address
     [street_line_1, street_line_2, neighborhood, city, region, postal_code, country].compact.join(', ')
   end
+
+  def summary
+    "#{address_type.titleize}: #{full_address}"
+  end
+
 end

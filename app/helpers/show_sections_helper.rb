@@ -32,6 +32,16 @@ module ShowSectionsHelper
     }
   end
 
+  def entities_roles_sections(role)
+    {
+      "Detalhes do Papel" => [
+        ["Nome", role.name],
+        ["Grupo", role.role_group],
+        ["Descrição", role.description]
+      ]
+    }
+  end
+
   def render_contacts(contacts)
     return "—" if contacts.blank?
 

@@ -1,0 +1,7 @@
+<%= form_with url: url, method: :get, local: true do |form| %>
+  <div class="input-group">
+    <%= form.label :query, "Pesquisar", class: "visually-hidden" %>
+    <%= form.text_field :query, placeholder: "Pesquisar", class: "form-control" %>
+    <%= form.submit "Pesquisar", class: "btn btn-sm btn-secondary" %>     
+  </div>
+<% end %>

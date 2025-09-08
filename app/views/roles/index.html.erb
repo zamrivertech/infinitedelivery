@@ -1,79 +1,22 @@
-<% provide(:title, "Entidades") %>
+<% provide(:title, "Papéis De Entidades") %>
 
 <% content_for :navpills do %>
-  <%= link_to "Geral", entities_path, class: "h6 btn btn-outline-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill me-2" %>
-  <%= link_to "Papeis", roles_path, class: "h6 btn btn-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill" %>
+    <%= link_to "Geral", entities_path, class: "h6 btn btn-outline-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill me-2" %>
+    <%= link_to "Papéis", entities_roles_path, class: "h6 btn btn-secondary ps-2 pe-2 pt-0 pb-0 mt-4 rounded-pill" %> 
 <% end %>
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <%= form_with url: roles_path, method: :get, local: true, class: "row g-2 mb-2" do |form| %>
-    <div class="input-group">
-      <%= form.label :query, "Pesquisar Papel", class: "visually-hidden" %>
-      <%= form.text_field :query, placeholder: "Pesquisar", class: "form-control" %>
-      <%= form.submit "Pesquisar", class: "btn btn-sm btn-secondary" %>
-    </div>
-  <% end %>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-3 border-bottom">
 
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <%= link_to "Adicionar", new_role_path, class: "btn btn-sm btn-success me-2" %>
-  </div>
-</div>
+<%= render "layouts/partials/search_filter_form", url: entities_roles_path %>
+
+<%= render "layouts/partials/toolbar_actions", new_path: new_entities_role_path, button_label: "Adicionar" %>
+
+</div>    
 
 <%= render "layouts/partials/flash_toasts" %>
 
-<div class="table-responsive small">
-  <table class="table table-striped table-sm">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Grupo</th>
-        <th>Descricao</th>
-        <th class="text-center"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if @roles.any? %>
-        <% @roles.each do |role| %>
-          <tr>
-            <td><%= role.name.titleize %></td>
-            <td><%= role.role_group %></td>
-            <td><%= role.description %></td>
-            <td class="text-center">
-              <div class="d-flex justify-content-end" role="group">
-                <%= link_to "Atualizar", edit_role_path(role), class: "btn btn-sm btn-outline-primary me-2 mt-1" %>
-                <button type="button" class="btn btn-sm btn-outline-danger me-2 mt-1" data-bs-toggle="modal" data-bs-target="#deleteModal-<%= role.id %>">
-                  Apagar
-                </button>
-              </div>
-            </td>
-          </tr>
-          <%= render partial: "layouts/partials/confirmation_modal", locals: {
-            modal_id: "deleteModal-#{role.id}",
-            modal_label_id: "deleteLabel-#{role.id}",
-            title: "Confirmar Remoção",
-            message: "Tens a certeza que desejas apagar o papel <strong>#{role.name.titleize}</strong>?".html_safe,
-            path: role_path(role),
-            modal_class: "",
-            dialog_class: "",
-            content_class: "",
-            header_class: "",
-            body_class: "",
-            footer_class: "",
-            cancel_button: nil,
-            confirm_button: nil
-          } %>
-        <% end %>
-      <% else %>
-        <tr>
-          <td colspan="2" class="text-center text-muted py-4">
-            <% if params[:query].present? %>
-              Nenhum papel corresponde à pesquisa: "<strong><%= params[:query] %></strong>"
-            <% else %>
-              Nenhum papel cadastrado ainda.
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<%= render "layouts/partials/data_table", table_config: @entities_role_table_config %>
+
+
+
+

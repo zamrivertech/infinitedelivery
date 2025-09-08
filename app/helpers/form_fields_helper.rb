@@ -1,4 +1,4 @@
-# app/helpers/form_fields_helper.rb
+
 module FormFieldsHelper
   def merge_select_classes(html_opts, form:, attr:)
     html_opts ||= {}
@@ -52,14 +52,19 @@ def address_fields
   ]
 end
 
-
-
-
  def contact_fields
   [
     field(:contact_type, :select, "Tipo de Contato", ["Telefone", "Email", "Outro"]),
     field(:value, :text_field, "Valor do Contato")
   ]      
+ end
+
+ def entities_roles_fields
+  [
+    field(:name, :text_field, "Nome do Papel da Entidade"),
+    field(:role_group, :text_field, "Grupo do Papel da Entidade"),  
+    field(:description, :text_area, "Descrição do Papel da Entidade")
+  ]
  end
 
   def render_fields(form, fields)

@@ -1,0 +1,32 @@
+<div class="table-responsive small">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <% table_config[:columns].each do |col| %>
+          <th><%= col[:label] %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if table_config[:collection].any? %>
+        <% table_config[:collection].each do |item| %>
+          <tr>
+            <% table_config[:columns].each do |col| %>
+              <td class="<%= col[:class] %>"><%= col[:value].call(item) %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="<%= table_config[:columns].size %>" class="text-center text-muted py-4">
+            <% if params[:query].present? %>
+              Nenhum resultado para: "<strong><%= params[:query] %></strong>"
+            <% else %>
+              Nenhum dado cadastrado ainda.
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

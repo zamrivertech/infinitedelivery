@@ -2,12 +2,7 @@ class EntitiesController < ApplicationController
   before_action :set_entity, only: %i[edit update destroy show]
 
   def index
-    @roles = Role.order(:name) # for select input
-    @entity_attributes = [
-      "Nome", "Nacionalidade", "Identificação", "Gênero",
-      "Nascimento", "Naturalidade", "Endereço", "Envio", "Recepção",
-      "Contacto", "Papel"
-    ]
+    @roles = Role.order(:name)
 
     base = Entity.includes(:contacts, :role)
 
@@ -35,6 +30,38 @@ class EntitiesController < ApplicationController
       .joins("LEFT JOIN parcels AS parcels_received ON parcels_received.recipient_id = entities.id")
       .group("entities.id")
       .distinct
+
+        @entity_table_config = {
+      collection: @entities,
+      columns: [
+        { label: "Nome", value: ->(e) { e.full_name } },
+        { label: "Nacionalidade", value: ->(e) { e.nationality } },
+        { label: "Identificação", value: ->(e) { "#{e.id_type} - #{e.id_number}" } },
+        { label: "Gênero", value: ->(e) { e.gender } },
+        { label: "Nascimento", value: ->(e) { e.date_of_birth } },
+        { label: "Endereço", value: ->(e) {
+            e.addresses.reject(&:marked_for_destruction?).map(&:address).join("<br>").presence || "Nenhum"
+          }
+        },
+        { label: "Contacto", value: ->(e) {
+            e.contacts.where.not(contact_type: nil).where.not(value: nil)
+            .map { |c| "#{c.contact_type.titleize}: #{c.value}" }
+            .join("<br>").html_safe
+          }
+        },
+        { label: "Papel", value: ->(e) { e.role&.name&.titleize || "Nenhum" } },
+        { label: "", value: ->(e) {
+            ActionController::Base.helpers.link_to(
+              "Visualizar",
+              "/entities/#{e.id}",
+              class: "btn btn-sm btn-outline-info ps-2 pe-2 pt-1 pb-1 me-1"
+            ).html_safe
+          }, class: "text-center"
+        }
+
+      ]
+}
+  
   end
 
   def new
@@ -81,6 +108,9 @@ class EntitiesController < ApplicationController
 
   def set_entity
     @entity = Entity.find(params[:id])
+    unless @entity
+    redirect_to entities_path, alert: "Entidade não encontrada."
+    end
   end
 
   # Ensures at least one contact and address is present for form rendering

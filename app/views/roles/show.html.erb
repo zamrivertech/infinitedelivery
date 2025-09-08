@@ -1,0 +1,17 @@
+<% provide(:title, "Papel de Entidade") %>
+
+<%= render "layouts/partials/show_header", record: @role, back_path: entities_roles_path, edit_path: edit_entities_role_path(@role), delete_path: entities_role_path(@role) %>
+
+<div class="row g-3 pt-3">
+<% entities_roles_sections(@role).each do |title, rows| %>
+  <div class="col-md-12">
+    <%= render "layouts/partials/show_section", title:, rows: %>
+  </div>
+<% end %>
+
+  <div class="col-md-12 text-muted mt-2 mb-5">
+    <small>Criado em <%= l(@role.created_at, format: :long) %> • Atualizado em <%= l(@role.updated_at, format: :long) %></small>
+  </div>
+</div>
+
+<%= render "layouts/partials/flash_toasts" %>
